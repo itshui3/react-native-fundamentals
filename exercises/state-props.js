@@ -11,7 +11,7 @@ export default () => {
   return (
     <View style={{ alignItems: "center", marginTop: 20 }}>
       <Text>You've pressed the button: {count} time(s)</Text>
-      <Button title="Press me" onPress={() => {setCount(c => c+1)}} />
+      <Button title={`Pressed ${count} time(s)`} onPress={() => {setCount(c => c+1)}} />
     </View>
   );
 };
