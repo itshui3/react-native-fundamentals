@@ -36,7 +36,7 @@ const CustomButton = ({ onPress, text, buttonStyle }) => {
       onPress={onPress}
       style={{...buttonStyle, ...buttonStyles}}
     >
-      <Text>{text}</Text>
+      <Text style={{ color: 'white' }}>{text}</Text>
     </TouchableOpacity>
   )
 }
