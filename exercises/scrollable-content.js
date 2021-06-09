@@ -18,7 +18,7 @@ const Square = ({ text, bgColor = "#7ce0f9" }) => (
   </View>
 );
 
-const squares = Array.from(new Array(15)).map((_, idx) => {return { text: `Square ${idx+1}`, key: idx }})
+const squares = Array.from(Array(15)).map((_, idx) => {return { text: `Square ${idx+1}`, key: idx }})
 
 export default () => {
 
