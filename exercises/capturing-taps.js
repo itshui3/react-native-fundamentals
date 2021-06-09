@@ -23,17 +23,18 @@ export default () => {
       style={styles.button}
       onPress={alertHello}
     >
-      <Text>Click Me</Text>
+      <Text style={{ color: '#fff', fontSize: 18 }}>Click Me</Text>
     </TouchableOpacity>
   )
 };
 
 const styles = StyleSheet.create({
   button: {
-    width: Dimensions.get('window').width,
+    alignSelf: 'center',
+    width: 150,
     height: 100,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: 'pink'
+    backgroundColor: 'blue'
   }
 });
