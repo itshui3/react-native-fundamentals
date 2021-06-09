@@ -9,7 +9,7 @@ export default () => {
         <View style={{ 
             flex: 1,
             flexDirection: 'row', 
-            justifyContent: 'center', 
+            justifyContent: 'space-around', 
             alignItems: 'center' 
         }}
         >
@@ -24,7 +24,7 @@ export default () => {
 const Square = ({ text, color }) => {
     return (
       <>
-        <View style={{ backgroundColor: color, ...SquareStyles.box }}>
+        <View style={[{ backgroundColor: color }, SquareStyles.box]}>
           <Text>{text}</Text>
         </View>
       </>
@@ -37,6 +37,5 @@ const SquareStyles = StyleSheet.create({
         height: 100,
         justifyContent: 'center',
         alignItems: 'center',
-        margin: 20
     }
 })

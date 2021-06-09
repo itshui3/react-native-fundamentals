@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, ScrollView } from "react-native";
 
 const styles = StyleSheet.create({
   container: { backgroundColor: "#fff" },
@@ -18,4 +18,20 @@ const Square = ({ text, bgColor = "#7ce0f9" }) => (
   </View>
 );
 
-export default () => null;
+const squares = Array.from(new Array(15)).map((_, idx) => {return { text: `Square ${idx+1}`, key: idx }})
+
+export default () => {
+
+  return (
+    <ScrollView>
+      {
+        squares.map(s => (
+          <Square
+            key={s.key}
+            text={s.text}
+          />
+        ))
+      }
+    </ScrollView>
+  )
+};
