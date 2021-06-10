@@ -9,6 +9,7 @@ import {
 } from 'react-native';
 import _ from "lodash";
 
+import { SafeAreaFrameContext } from 'react-native-safe-area-context';
 import { PEOPLE } from './long-list-people';
 
 const idPEOPLE = PEOPLE.map(person => {
@@ -56,7 +57,7 @@ export default () => {
           <RenderFlat data={idPEOPLE} />
         :
           // <RenderSection data={idPEOPLE} />
-          null
+          <RenderSection data={idPEOPLE} />
       }
 
     </>
@@ -111,24 +112,54 @@ const RenderFlat = ({ data }) => {
 
 }
 
-// const RenderSection = ({ data }) => {
-//   const _renderPeopleSection = ({ item }) => {
-//     return (<Item name={item.name} />)
-//   }
+const RenderSection = ({ data }) => {
+  const _renderPeopleSection = ({ item }) => {
+    return (<Item name={item.name} />)
+  }
 
-//   const _renderSectionHeader = ({ name }) => {
-//     name.last[0];
-//   }
+  const groupPeople = (groupData) => {
 
-//   return (
-//     <SectionList
-//       sections={data}
-//       keyExtractor={(item) => item.key}
-//       renderItem={_renderPeopleSection}
-//       renderSectionHeader={<Text>header</Text>}
-//     />
-//   );
-// }
+    const groupedData = groupData.reduce((acc, cur) => {
+      const obj = { ...acc }
+
+      if (acc[cur.name.last[0]]) {
+        obj[cur.name.last[0]].push(cur);
+      } else {
+        obj[cur.name.last[0]] = [cur];
+      }
+
+      return obj;
+    }, {});
+
+    const parsedGroupedData = Object.entries(groupedData).map(([title, records]) => {
+      return {
+        title,
+        data: records
+      }
+    });
+
+    // console.log(groupedData);
+    return parsedGroupedData;
+
+  }
+  // [{ title: 'Group 1', data }]
+
+  return (
+    <SectionList
+      sections={groupPeople(data)}
+      renderSectionHeader={({ section }) => {
+        return (
+          <View>
+            <Text>{section.title}</Text>
+          </View>
+        )
+      }}
+      renderItem={_renderPeopleSection}
+      keyExtractor={(item) => item.key}
+      ItemSeparatorComponent={() => <View style={{ height: 1, backgroundColor: 'black' }} />}
+    />
+  );
+}
 
 const Item = ({ name }) => {
 
