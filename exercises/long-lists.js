@@ -2,7 +2,9 @@ import React from 'react';
 import { 
   FlatList, 
   // SectionList, 
-  // Text 
+  Text,
+  View,
+  StyleSheet,
 } from 'react-native';
 import _ from "lodash";
 
@@ -17,12 +19,8 @@ const idPEOPLE = PEOPLE.map(person => {
 
 export default () => {
 
-  React.useEffect(() => {
-    console.log('called long-list component')
-  }, []);
-
   const _renderPeople = ({ item }) => {
-
+    return (<Item name={item.name} />);
   }
 
   return (
@@ -35,3 +33,26 @@ export default () => {
     </>
   )
 }
+
+const Item = ({ name }) => {
+
+  return (
+    <View style={ItemStyle.container}>
+      <Text style={ItemStyle.text}>{`${name.title} ${name.first} ${name.last}`}</Text>
+    </View>
+
+  )
+}
+
+const ItemStyle = StyleSheet.create({
+  container: {
+    height: 30,
+    paddingLeft: 15,
+    justifyContent: 'flex-end',
+    borderBottomColor: 'black',
+    borderBottomWidth: 1
+  },
+  text: {
+    // textDecorationLine: 'underline'
+  }
+})
