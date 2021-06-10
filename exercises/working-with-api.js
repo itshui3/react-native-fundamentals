@@ -1,20 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { FlatList, Text, View, StyleSheet, SafeAreaView } from "react-native";
 
+import { useFetchPeople } from './_fetchPeople';
+
 export default () => {
-  const [people, setPeople] = useState([]);
-
-  useEffect(() => {
-    // fetch data from api on boot
-
-    fetch("https://randomuser.me/api/?results=100&inc=name")
-      .then(res => res.json())
-      .then(res => {
-        setPeople(res.results);
-      })
-      .catch(err => console.log(err))
-
-  }, []);
+  const [people] = useFetchPeople("https://randomuser.me/api/?results=100&inc=name");
 
   return (
     <SafeAreaView>
