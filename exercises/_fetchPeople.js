@@ -1,4 +1,5 @@
 import {useState, useEffect} from 'react';
+import _ from 'lodash';
 
 export const useFetchPeople = (url) => {
     const [people, setPeople] = useState([]);
@@ -6,12 +7,24 @@ export const useFetchPeople = (url) => {
     useEffect(() => {
       // fetch data from api on boot
       // "https://randomuser.me/api/?results=100&inc=name"
-      fetch(url)
+      const timeout = setTimeout(() => {
+        fetch(url)
         .then(res => res.json())
         .then(res => {
-          setPeople(res.results);
+          setPeople(res.results.map((person) => {
+
+            const newPerson = {
+                ...person,
+                key: _.uniqueId()
+            }
+
+            return newPerson;
+          }));
         })
         .catch(err => console.log(err))
+      }, 2000)
+
+      return () => clearTimeout(timeout);
   
     }, []);
 
