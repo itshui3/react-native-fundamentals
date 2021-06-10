@@ -27,6 +27,7 @@ export default () => {
             value={name}
             onChangeText={handleInput}
             placeholder='John Doe'
+            placeholderTextColor='rgba(0, 0, 0, 0.5)'
           />
           <Button
             title='Say Hello'
@@ -50,7 +51,7 @@ const formStyles = StyleSheet.create({
 
     input: {
         height: 50,
-        backgroundColor: 'lightgrey',
+        backgroundColor: "rgba(0, 0, 0, 0.1)",
         padding: 10,
         borderRadius: 5
     },
