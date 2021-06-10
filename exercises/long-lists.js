@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { 
   FlatList, 
   // SectionList, 
   Text,
   View,
   StyleSheet,
+  Button,
 } from 'react-native';
 import _ from "lodash";
 
@@ -15,23 +16,59 @@ const idPEOPLE = PEOPLE.map(person => {
     name: person.name,
     key: _.uniqueId()
   }
-})
+});
+
+const C = {
+  flat: 'FLAT',
+  section: 'SECTION'
+}
 
 export default () => {
 
-  const _renderPeople = ({ item }) => {
+  const [listType, setListType] = useState(C.flat);
+
+  const switchListType = () => {
+    setListType(t => {
+      if (t === C.flat) {
+        return C.section
+      }
+      return C.flat
+    });
+  }
+
+  return (
+    <>
+      <Button
+        title={
+          listType === C.flat
+          ?
+          'Render Section'
+          :
+          'Render Flat'
+        }
+        onPress={switchListType}
+      />
+      <RenderFlat data={idPEOPLE} />
+    </>
+  )
+}
+
+const RenderFlat = ({ data }) => {
+
+  const _renderPeopleFlat = ({ item }) => {
     return (<Item name={item.name} />);
   }
 
   return (
     <>
       <FlatList
-        data={idPEOPLE}
-        renderItem={_renderPeople}
+        data={data}
+        renderItem={_renderPeopleFlat}
         keyExtractor={(item) => item.key}
       />
     </>
-  )
+  );
+
 }
 
 const Item = ({ name }) => {
@@ -55,4 +92,4 @@ const ItemStyle = StyleSheet.create({
   text: {
     // textDecorationLine: 'underline'
   }
-})
+});
