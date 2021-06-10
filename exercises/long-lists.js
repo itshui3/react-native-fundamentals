@@ -138,11 +138,11 @@ const RenderSection = ({ data }) => {
       }
     });
 
-    // console.log(groupedData);
-    return parsedGroupedData;
+    return parsedGroupedData.sort((a, b) => {
+      return a.title > b.title;
+    });
 
   }
-  // [{ title: 'Group 1', data }]
 
   return (
     <SectionList
