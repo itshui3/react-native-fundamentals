@@ -75,6 +75,36 @@ const RenderFlat = ({ data }) => {
         data={data}
         renderItem={_renderPeopleFlat}
         keyExtractor={(item) => item.key}
+        ItemSeparatorComponent={() => <View style={{ height: 1, backgroundColor: 'black' }} />}
+        ListHeaderComponent={(
+          <View 
+            style={{ 
+              height: 50, 
+              backgroundColor: 'rgba(0, 0, 0, 0.01)', 
+              alignItems: 'center',
+              justifyContent: 'center'
+            }}
+          >
+            <Text
+              style={{ fontSize: 20 }}
+            >FlatList of Names
+            </Text>
+          </View>
+        )}
+        ListFooterComponent={(
+          <View
+            style={{
+              height: 50,
+              backgroundColor: 'rgba(0, 0, 0, 0.01)', 
+              alignItems: 'center',
+              justifyContent: 'center'
+            }}
+          >
+            <Text>
+              End.
+            </Text>
+          </View>
+        )}
       />
     </>
   );
@@ -115,8 +145,6 @@ const ItemStyle = StyleSheet.create({
     height: 30,
     paddingLeft: 15,
     justifyContent: 'flex-end',
-    borderBottomColor: 'black',
-    borderBottomWidth: 1
   },
   text: {
     // textDecorationLine: 'underline'
