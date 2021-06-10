@@ -17,33 +17,33 @@ import LongList from '../exercises/long-lists';
 
 const AppStack = createStackNavigator();
 const Main = () => (
-  // <AppStack.Navigator screenOptions={{ headerBackTitleVisible: false }}>
-  //   <AppStack.Screen
-  //     name="ExerciseList"
-  //     component={ExerciseList}
-  //     options={{ title: "Exercises" }}
-  //   />
-  //   <AppStack.Screen
-  //     name="Exercise"
-  //     component={Exercise}
-  //     options={({ navigation, route }) => ({
-  //       title: route.params.title,
-  //       headerRight: () => {
-  //         const lesson = _.get(route, "params.lesson");
+  <AppStack.Navigator screenOptions={{ headerBackTitleVisible: false }}>
+    <AppStack.Screen
+      name="ExerciseList"
+      component={ExerciseList}
+      options={{ title: "Exercises" }}
+    />
+    <AppStack.Screen
+      name="Exercise"
+      component={Exercise}
+      options={({ navigation, route }) => ({
+        title: route.params.title,
+        headerRight: () => {
+          const lesson = _.get(route, "params.lesson");
 
-  //         return (
-  //           <View style={{ paddingRight: 10 }}>
-  //             <Button
-  //               title="Instructions"
-  //               onPress={() => navigation.push("Instructions", { lesson })}
-  //             />
-  //           </View>
-  //         );
-  //       },
-  //     })}
-  //   />
-  // </AppStack.Navigator>
-  <LongList />
+          return (
+            <View style={{ paddingRight: 10 }}>
+              <Button
+                title="Instructions"
+                onPress={() => navigation.push("Instructions", { lesson })}
+              />
+            </View>
+          );
+        },
+      })}
+    />
+  </AppStack.Navigator>
+  // <LongList />
 );
 
 const RootStack = createStackNavigator();
