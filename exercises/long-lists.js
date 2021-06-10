@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { 
   FlatList, 
-  // SectionList, 
+  SectionList, 
   Text,
   View,
   StyleSheet,
@@ -28,12 +28,14 @@ export default () => {
   const [listType, setListType] = useState(C.flat);
 
   const switchListType = () => {
+
     setListType(t => {
       if (t === C.flat) {
-        return C.section
+        return C.section;
       }
-      return C.flat
+      return C.flat;
     });
+
   }
 
   return (
@@ -42,15 +44,23 @@ export default () => {
         title={
           listType === C.flat
           ?
-          'Render Section'
+            'Render Section'
           :
-          'Render Flat'
+            'Render Flat'
         }
         onPress={switchListType}
       />
-      <RenderFlat data={idPEOPLE} />
+      {
+        listType === C.flat
+        ?
+          <RenderFlat data={idPEOPLE} />
+        :
+          // <RenderSection data={idPEOPLE} />
+          null
+      }
+
     </>
-  )
+  );
 }
 
 const RenderFlat = ({ data }) => {
@@ -71,14 +81,33 @@ const RenderFlat = ({ data }) => {
 
 }
 
+// const RenderSection = ({ data }) => {
+//   const _renderPeopleSection = ({ item }) => {
+//     return (<Item name={item.name} />)
+//   }
+
+//   const _renderSectionHeader = ({ name }) => {
+//     name.last[0];
+//   }
+
+//   return (
+//     <SectionList
+//       sections={data}
+//       keyExtractor={(item) => item.key}
+//       renderItem={_renderPeopleSection}
+//       renderSectionHeader={<Text>header</Text>}
+//     />
+//   );
+// }
+
 const Item = ({ name }) => {
 
   return (
     <View style={ItemStyle.container}>
       <Text style={ItemStyle.text}>{`${name.title} ${name.first} ${name.last}`}</Text>
     </View>
+  );
 
-  )
 }
 
 const ItemStyle = StyleSheet.create({
@@ -91,5 +120,8 @@ const ItemStyle = StyleSheet.create({
   },
   text: {
     // textDecorationLine: 'underline'
+  },
+  header: {
+    fontWeight: 'bold'
   }
 });
