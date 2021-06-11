@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text, Button } from "react-native";
+import { View, Text, Button, StyleSheet } from "react-native";
 
 class ClassComponent extends React.Component {
     constructor(props) {
@@ -13,13 +13,16 @@ class ClassComponent extends React.Component {
 
     render() {
         return (
-          <View>
-            <Text>{this.state.text + this.state.count}</Text>
+          <View style={{flex: 1, alignItems: 'center'}}>
+            <Text>{this.state.text + this.state.count}
+            </Text>
             <Button
               title='Clicker'
               onPress={() => this.setState((prev) => {
                     return {count: prev.count+1};
                 })}
+              style={styles.button}
+              color='white'
             />
           </View>
         );
@@ -27,3 +30,12 @@ class ClassComponent extends React.Component {
 }
 
 export default ClassComponent;
+
+const styles = StyleSheet.create({
+    container: {
+        flex: 1, alignItems: 'center'
+    },
+    button: {
+        color: 'black'
+    }
+});
