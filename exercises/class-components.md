@@ -46,6 +46,7 @@ import React from "react";
 import { View, Text } from "react-native";
 
 class Example extends React.Component {
+  
   constructor(props) {
     super(props);
 
@@ -53,6 +54,7 @@ class Example extends React.Component {
       text: "Hello",
     };
   }
+
   render() {
     return (
       <View>
