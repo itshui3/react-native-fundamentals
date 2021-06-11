@@ -1,5 +1,5 @@
 import React from "react";
-import { FlatList, Text, View, StyleSheet, SafeAreaView } from "react-native";
+import { FlatList, Text, View, StyleSheet, SafeAreaView, ActivityIndicator } from "react-native";
 
 import { useFetchPeople } from './_fetchPeople';
 
@@ -7,14 +7,14 @@ export default () => {
   const [people] = useFetchPeople("https://randomuser.me/api/?results=100&inc=name");
 
   return (
-    <SafeAreaView>
+    <SafeAreaView style={{flex: 1}}>
       {
         people.length > 0
         ?
         (
           <FlatList
             data={people}
-            keyExtractor={(item) => `${item.name.first}-${item.name.last}`}
+            keyExtractor={(item) => item.key}
             renderItem={({ item }) => {
             return (
               <View style={styles.row}>
@@ -28,7 +28,14 @@ export default () => {
           />
         )
         :
-          <Text>loading people...</Text>
+          (          
+            <SafeAreaView
+              style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}
+            >
+              <ActivityIndicator size="large" color='rgba(0, 0, 0, 0.2)' />
+            </SafeAreaView>
+          )
+          
       }
 
     </SafeAreaView>
