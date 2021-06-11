@@ -7,7 +7,7 @@ export default () => {
   const [people] = useFetchPeople("https://randomuser.me/api/?results=100&inc=name");
 
   return (
-    <View style={{flex: 1}}>
+    <SafeAreaView style={{flex: 1}}>
       {
         people.length > 0
         ?
@@ -29,16 +29,16 @@ export default () => {
         )
         :
           (          
-            <View
+            <SafeAreaView
               style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}
             >
               <ActivityIndicator size="large" color='rgba(0, 0, 0, 0.2)' />
-            </View>
+            </SafeAreaView>
           )
           
       }
 
-    </View>
+    </SafeAreaView>
   );
 };
 
